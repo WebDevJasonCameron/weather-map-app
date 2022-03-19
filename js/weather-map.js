@@ -29,7 +29,7 @@
             exclude: 'minutely, hourly, current, alerts,',
             units: 'imperial'
         }).done(function (data){
-            console.log(data.daily[0]);
+            // console.log(data.daily[0]);
 
             $('#wx-card-container').html(loopThroughWxList(data.daily));
 
@@ -242,9 +242,13 @@
         click ++;
     })
 
-    // Card calls Modal
-    $('.wx-card').click(function(){
-        $('wx-modal').modal('show');
+    // Card highlights detail btn
+    $('.wx-card').on('hover', function(){
+        $('.details-btn').css('background-color', 'rgba(0, 0, 0, 0.08)');
+        console.log('hover');
+    }, function (){
+        $('.details-btn').css('background-color', 'rgba(0, 0, 0, 0.0)');
+        console.log('off');
     })
 
 
