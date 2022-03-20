@@ -14,6 +14,8 @@ B. Function refactoring  <br>
       "...b"<br>  
 C. Obj deconstruction <br>                                          
       "...c" <br>
+4. Better Icons <br>
+   <-- Branch: "icon-update"
 
 ### 1010 | Branch modal-i
 Branch modal-i added...
