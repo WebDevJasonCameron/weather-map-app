@@ -139,34 +139,51 @@
                     <div id="wx-modal-${obj.dt}" class="modal-wx">
                         <div class="modal-content">
                         <h2>Hello world</h2>
+                        <p>$wx-modal-{obj.dt}</p>
+                        <button class="close-btn btn-primary">Close</button>
                         </div>
                     </div>
                     
                     <!--CREATE DYNAMIC MODAL SCRIPT-->
+                    ${buildCardJSScript(obj)};
+                    
+        `
+    }
+    function buildCardJSScript(obj){
+        return ` 
                     <script>
+                        // HOVER ANIMATION
                         $('#wx-card-${obj.dt}').hover( () => {
                             $('#details-btn-${obj.dt}').css('background-color', ' rgba(0, 0, 0, 0.09)')
                         }, () => {
                             $('#details-btn-${obj.dt}').css ('background-color', ' rgba(0, 0, 0, 0.0)')
                         })
                         
-                        // $('#details-btn-${obj.dt}').on('click', function {
-                        //     $('#wx-modal-${obj.dt}').class('display', 'block')
-                        // })
-                    
+                        // CALL MODAL
+                        $('#wx-card-${obj.dt}').on('click', function() {
+                            $('#wx-modal-${obj.dt}').css('display', 'block');
+                        })
+                        
+                        // CLOSE MODAL WITH BTN
+                        $('.close-btn').on('click', function() {
+                            $('#wx-modal-${obj.dt}').css('display', 'none');
+                        })   
+                        
+                        
+                          
                     </script>
-
-
+        
+        
         `
+    }
+    function buildModalScript(obj){
+
     }
     function buildCardContainerScript(str){
         return `
                 <div class="d-flex flex-column p-3 align-items-center flex-md-row justify-content-md-center">
                    ${str}
                 </div>`
-    }
-    function buildModalScript(obj){
-
     }
 
     // Loop through 5Day Forecast
