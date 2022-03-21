@@ -9,13 +9,13 @@
     /**
      *  MAP
      */
-    // Build Map
+        // Build Map
     let map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-98.4916, 29.4252],
-        zoom: 9
-    });
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-98.4916, 29.4252],
+            zoom: 9
+        });
 
     /**
      *  WX
@@ -30,11 +30,7 @@
             units: 'imperial'
         }).done(function (data){
             // console.log(data.daily[0]);
-            // console.log('wx-c-' + data.daily[0].dt)
-            // console.log('wx-c-' + data.daily[1].dt)
-            // console.log('wx-c-' + data.daily[2].dt)
-            // console.log('wx-c-' + data.daily[3].dt)
-            // console.log('wx-c-' + data.daily[4].dt)
+
             $('#wx-card-container').html(loopThroughWxList(data.daily));
 
 
@@ -88,10 +84,8 @@
      */
     // Build Card HTML
     function buildCardScript(obj){
-        console.log(`wx-c-${obj.dt}`);
         return `
-                     <!--JS CARD BUILD-->
-                     <article class="wx-c-${obj.dt} wx-card card w-100 mx-2 d-flex keep-parent">
+                     <article id="wx-card-${obj.dt}" class="wx-card card w-100 mx-2 d-flex keep-parent">
                          <div class="card-header text-center">
                              <div aria-label="Weather Date">
                                  ${transDate(obj.dt)}
@@ -136,23 +130,22 @@
                                </b>
                             </div>
                         </div>
-                        <button class="details-btn-${obj.dt} btn active day-btn" data-toggle="modal" data-target="#wx-modal-1">
+                        <button id="details-btn-${obj.dt}" class="details-btn btn active day-btn" data-toggle="modal" data-target="#wx-modal-1">
                            Details
                         </button>
                     </article>
                     
-                    <!--JS MODAL BUILD-->
-                    
-                    
-                    
-                    <!--JS SCRIPT BUILD-->
+                    <!--CREATE DYNAMIC MODAL SCRIPT-->
                     <script>
-                        $( ".wx-c-${obj.dt}" ).hover(() => {
-                        $('.details-btn-${obj.dt}').css('background-color', 'rgba(0, 0, 0, 0.08)');
-                        },() => {
-                        $('.details-btn-${obj.dt}').css('background-color', 'rgba(0, 0, 0, 0.0)');
+                        $('#wx-card-${obj.dt}').hover( () => {
+                            $('#details-btn-${obj.dt}').css('background-color', ' rgba(0, 0, 0, 0.3)')
+                        }, () => {
+                            $('#details-btn-${obj.dt}').css ('background-color', ' rgba(0, 0, 0, 0.0)')
                         })
+                    
                     </script>
+
+
         `
     }
     function buildCardContainerScript(str){
@@ -218,7 +211,7 @@
     /**
      *  VARS, ARRAYS & OBJ
      */
-    // Starting Marker Coordinators
+        // Starting Marker Coordinators
     let gCoordinates = [-98.4916, 29.4252]
     let gMarker = createMarker(gCoordinates);
     let tempHoldNewCoord = '';                                  //   Used in Fly Over Function
@@ -263,13 +256,13 @@
     })
 
     // Card highlights detail btn
-    // $( ".wx-card" ).hover(() => {
-    //     $('.details-btn').css('background-color', 'red');
-    // },() => {
-    //     $('.details-btn').css('background-color', 'blue');
-    // })
-
-
+    $('.wx-card').on('hover', function(){
+        $('.details-btn').css('background-color', 'rgba(0, 0, 0, 0.08)');
+        console.log('hover');
+    }, function (){
+        $('.details-btn').css('background-color', 'rgba(0, 0, 0, 0.0)');
+        console.log('off');
+    })
 
 
     /**
@@ -310,5 +303,3 @@
 //          NIGHT                .night
 //          EVE                  .eve
 //          MORN                 .morn
-
-

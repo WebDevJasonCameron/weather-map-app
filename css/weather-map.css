@@ -20,15 +20,15 @@
     box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
 }
 
-/*.day-btn {*/
-/*    background-color: inherit;*/
-/*    color: inherit;*/
-/*}*/
+.day-btn {
+    background-color: inherit;
+    color: inherit;
+}
 
-/*.day-btn:hover {*/
-/*    background-color:  rgba(0, 0, 0, 0.08);*/
-/*    color: inherit;*/
-/*}*/
+.day-btn:hover {
+    background-color:  rgba(0, 0, 0, 0.08);
+    color: inherit;
+}
 
 .keep-parent {
     background-color: inherit;
@@ -53,7 +53,7 @@
 }
 
 .modal-x {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
