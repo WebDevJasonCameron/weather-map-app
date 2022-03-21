@@ -16,6 +16,8 @@ C. Obj deconstruction <br>
       "...c" <br>
 4. Better Icons <br>
    <-- Branch: "icon-update"
+5. Add Clock/Time <br>
+   <-- Branch: 'timer-add'
 
 ### 1010 | Branch modal-i
 Branch modal-i added...
