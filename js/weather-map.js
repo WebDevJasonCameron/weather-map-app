@@ -135,13 +135,24 @@
                         </button>
                     </article>
                     
+                    <!--WX MODAL-->
+                    <div id="wx-modal-${obj.dt}" class="modal-wx">
+                        <div class="modal-content">
+                        <h2>Hello world</h2>
+                        </div>
+                    </div>
+                    
                     <!--CREATE DYNAMIC MODAL SCRIPT-->
                     <script>
                         $('#wx-card-${obj.dt}').hover( () => {
-                            $('#details-btn-${obj.dt}').css('background-color', ' rgba(0, 0, 0, 0.3)')
+                            $('#details-btn-${obj.dt}').css('background-color', ' rgba(0, 0, 0, 0.09)')
                         }, () => {
                             $('#details-btn-${obj.dt}').css ('background-color', ' rgba(0, 0, 0, 0.0)')
                         })
+                        
+                        // $('#details-btn-${obj.dt}').on('click', function {
+                        //     $('#wx-modal-${obj.dt}').class('display', 'block')
+                        // })
                     
                     </script>
 
