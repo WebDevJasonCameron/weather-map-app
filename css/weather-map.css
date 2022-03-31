@@ -12,6 +12,7 @@
     margin: 0 20px 20px 0;
     transition: .3s;
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
 .wx-card:hover {
@@ -49,4 +50,23 @@
 
 .dark-form {
     background-color: #58585e;
+}
+
+.modal-wx {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #f4f4f4;
+    margin: 20% auto;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
 }

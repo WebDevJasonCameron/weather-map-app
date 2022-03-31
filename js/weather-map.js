@@ -9,13 +9,13 @@
     /**
      *  MAP
      */
-    // Build Map
+        // Build Map
     let map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-98.4916, 29.4252],
-        zoom: 9
-    });
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-98.4916, 29.4252],
+            zoom: 9
+        });
 
     /**
      *  WX
@@ -85,7 +85,7 @@
     // Build Card HTML
     function buildCardScript(obj){
         return `
-                     <article class="wx-card card w-100 mx-2 d-flex keep-parent">
+                     <article id="wx-card-${obj.dt}" class="wx-card card w-100 mx-2 d-flex keep-parent">
                          <div class="card-header text-center">
                              <div aria-label="Weather Date">
                                  ${transDate(obj.dt)}
@@ -130,19 +130,100 @@
                                </b>
                             </div>
                         </div>
-                        <button class="details-btn btn active day-btn" data-toggle="modal" data-target="#wx-modal-1">
+                        <button id="details-btn-${obj.dt}" class="details-btn btn active day-btn" data-toggle="modal" data-target="#wx-modal-1">
                            Details
                         </button>
-                    </article>`
+                    </article>
+                    
+                    <!--WX MODAL-->
+                    ${buildModalScript(obj)}
+                    
+                    <!--CREATE DYNAMIC MODAL SCRIPT-->
+                    ${buildCardJSScript(obj)}
+                    
+        `
+    }
+    function buildCardJSScript(obj){
+        return ` 
+                    <script>
+                        // HOVER ANIMATION
+                        $('#wx-card-${obj.dt}').hover( () => {
+                            $('#details-btn-${obj.dt}').css('background-color', ' rgba(0, 0, 0, 0.09)')
+                        }, () => {
+                            $('#details-btn-${obj.dt}').css ('background-color', ' rgba(0, 0, 0, 0.0)')
+                        })
+                        
+                        // CALL MODAL
+                        $('#wx-card-${obj.dt}').on('click', function() {
+                            $('#wx-modal-${obj.dt}').css('display', 'block');
+                        })
+                        
+                        // CLOSE MODAL WITH BTN
+                        $('.close-btn').on('click', function() {
+                            $('#wx-modal-${obj.dt}').css('display', 'none');
+                        })   
+                                 
+                    </script>
+        `
+    }
+    function buildModalScript(obj){
+        return `
+                    <div id="wx-modal-${obj.dt}" class="modal-wx">
+                        <div class="modal-content">
+                         <div class="card-header text-center">
+                             <div aria-label="Weather Date">
+                                 ${transDate(obj.dt)}
+                             </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center" aria-label="temperature" style="font-size: 2em">
+                                ${Math.round(obj.temp.day)}                           <!--TEMP-->
+                                °F / 
+                                ${Math.round(obj.temp.night)} 
+                                °F     
+                            </div>
+                            <div class="wx-img text-center">
+                                                                                       <!--ICON-->
+             <img src="http://openweathermap.org/img/w/${obj.weather[0].icon}.png" alt="current weather">
+                                    
+                             </div>
+            <hr>
+                             <div class="mx-3 py-2" aria-label="description">
+                               Description: <br>
+                                <b>
+                                    ${obj.weather[0].description}                       <!--DESCRIPTION-->
+                               </b>
+                            </div>
+                            <div class="mx-3" aria-label="humidity">
+                               Humidity:
+                               <b>
+                                    ${obj.humidity}                                      <!--HUMIDITY-->
+                               </b>
+                            </div>
+            <hr>
+                            <div class="mx-3 py-2" aria-label="wind">
+                               Wind:
+                               <b>
+                                   ${obj.wind_deg}° | ${Math.round(obj.wind_speed)} mph  <!--WIND-->
+                               </b>
+                            </div>
+                            <div class="mx-3" aria-label="pressure">
+                               Pressure: 
+                               <b>
+                                   ${obj.pressure}                                       <!--WIND-->
+                               </b>
+                            </div>
+                        </div>
+                        <button class="close-btn btn-primary">Close</button>
+                        </div>
+                    </div>
+        `
     }
     function buildCardContainerScript(str){
         return `
                 <div class="d-flex flex-column p-3 align-items-center flex-md-row justify-content-md-center">
                    ${str}
                 </div>`
-    }
-    function buildModalScript(obj){
-
     }
 
     // Loop through 5Day Forecast
@@ -198,7 +279,7 @@
     /**
      *  VARS, ARRAYS & OBJ
      */
-    // Starting Marker Coordinators
+        // Starting Marker Coordinators
     let gCoordinates = [-98.4916, 29.4252]
     let gMarker = createMarker(gCoordinates);
     let tempHoldNewCoord = '';                                  //   Used in Fly Over Function
