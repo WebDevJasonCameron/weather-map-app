@@ -9,7 +9,7 @@
     /**
      *  MAP
      */
-        // Build Map
+    // Build Map
     let map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
@@ -29,11 +29,8 @@
             exclude: 'minutely, hourly, current, alerts,',
             units: 'imperial'
         }).done(function (data){
-            // console.log(data.daily[0]);
-
-            $('#wx-card-container').html(loopThroughWxList(data.daily));
-
-
+            $('#wx-card-container')
+                .html(loopThroughWxList(data.daily));
         }).fail(function (jqXhr, status, error) {
             console.log(jqXhr);
             console.log(status);
@@ -58,23 +55,20 @@
     function findLocalCity(coord){                                      //   Used when the marker changes
         reverseGeocode({lat: coord[1], lng: coord[0]}, MAPBOX_API_TOKEN).then(function (data){
             let city = data;
-            city = city.replace(/[0-9]/g, '').split(', ');
-            city = city[1] + ', ' + city[2];
+            city = city.replace(/[0-9]/g, '').split(', ');              //   Parses out the city and state from
+            city = city[1] + ', ' + city[2];                            // location data
             $('#name-of-city').text(city)
         })
     }
-
     function createMarker(coord){
         let marker = new mapboxgl.Marker({
             draggable: true
         })
             .setLngLat(coord)
             .addTo(map);
-
-
         return marker;
     }
-    function moveMarker(coord){
+    function moveMarker(coord){                                         //   Called when place is found with search
         gMarker.setLngLat(coord);
     }
 
@@ -82,7 +76,7 @@
     /**
      * HELPER FUNCTIONS
      */
-    // Build Card HTML
+    // Build Cards HTML
     function buildCardScript(obj){
         return `
                      <article id="wx-card-${obj.dt}" class="wx-card card w-100 mx-2 d-flex keep-parent">
@@ -155,7 +149,15 @@
                         
                         // CALL MODAL
                         $('#wx-card-${obj.dt}').on('click', function() {
+                            console.log( $('#wx-card-${obj.dt}'))
                             $('#wx-modal-${obj.dt}').css('display', 'block');
+                            if( $('#wx-card-${obj.dt}').css('background-color') === '#58585e'){
+                                $('.modal-content').css('background-color', '#58585e')
+                                .css('color', 'FFFFFF');
+                            } else {
+                                 $('.modal-content').css('background-color', '#FFFFFF')
+                                .css('color', '#000000');
+                            }
                         })
                         
                         // CLOSE MODAL WITH BTN
@@ -219,8 +221,9 @@
                     </div>
         `
     }
-    function buildCardContainerScript(str){
-        return `
+    function buildCardContainerScript(str){                             //   Combines all gen cards and their scripts
+                                                                        // into one container
+        return `                                                        
                 <div class="d-flex flex-column p-3 align-items-center flex-md-row justify-content-md-center">
                    ${str}
                 </div>`
@@ -323,7 +326,7 @@
         click ++;
     })
 
-    // Card highlights detail btn
+    // Card highlights detail btn on Hover
     $('.wx-card').on('hover', function(){
         $('.details-btn').css('background-color', 'rgba(0, 0, 0, 0.08)');
         console.log('hover');
