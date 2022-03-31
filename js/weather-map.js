@@ -136,10 +136,10 @@
                     </article>
                     
                     <!--WX MODAL-->
-                    ${buildModalScript(obj)};
+                    ${buildModalScript(obj)}
                     
                     <!--CREATE DYNAMIC MODAL SCRIPT-->
-                    ${buildCardJSScript(obj)};
+                    ${buildCardJSScript(obj)}
                     
         `
     }
@@ -175,14 +175,14 @@
                                  ${transDate(obj.dt)}
                              </div>
                         </div>
-                         <div class="card-body">
+                        <div class="card-body">
                             <div class="text-center" aria-label="temperature" style="font-size: 2em">
                                 ${Math.round(obj.temp.day)}                           <!--TEMP-->
                                 °F / 
                                 ${Math.round(obj.temp.night)} 
                                 °F     
                             </div>
-                             <div class="wx-img text-center">
+                            <div class="wx-img text-center">
                                                                                        <!--ICON-->
              <img src="http://openweathermap.org/img/w/${obj.weather[0].icon}.png" alt="current weather">
                                     
