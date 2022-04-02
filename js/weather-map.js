@@ -336,8 +336,8 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>${transDate(obj.sunrise)}</td>
-                                            <td>${transDate(obj.sunset)}</td>
+                                            <td>${transTime(obj.sunrise)}</td>
+                                            <td>${transTime(obj.sunset)}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -358,8 +358,8 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>${transDate(obj.sunrise)}</td>
-                                            <td>${transDate(obj.sunset)}</td>
+                                            <td>${transTime(obj.sunrise)}</td>
+                                            <td>${transTime(obj.sunset)}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -394,6 +394,13 @@
     function transDate(unixTimeStamp){
         let date = new Date(unixTimeStamp * 1000).toDateString();
         return date
+    }
+    // Get time from unixTimeStamp
+    function transTime(unixTimeStamp){
+        let date = new Date(unixTimeStamp * 1000).toLocaleTimeString();
+        let time = date.split(':')
+        time = time[0] + ':' + time[1] + ' ' + time[2].split(' ').pop()
+        return time;
     }
 
     // Fly to location
