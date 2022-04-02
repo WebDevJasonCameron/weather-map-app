@@ -10,5 +10,5 @@ Currently, I am refactoring this project.  This application started as a group C
 7. Add a Mapbox text input to search by location and have the forecast update when a new location is searched.
 BONUS: Make sure you can update the marker's position to the new search result.
 See a couple of examples here:
-![img.png](img.png)
+![img.png](img/img.png)
 ![](img/5day-demo-map.gif)
