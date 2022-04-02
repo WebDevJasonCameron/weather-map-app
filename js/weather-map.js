@@ -31,7 +31,6 @@
         }).done(function (data){
             $('#wx-card-container')
                 .html(loopThroughWxList(data.daily));
-            console.log(data.daily[0])
         }).fail(function (jqXhr, status, error) {
             console.log(jqXhr);
             console.log(status);
@@ -171,59 +170,6 @@
                     </script>
         `
     }
-    // function buildModalScript(obj){
-    //     return `
-    //                 <div id="wx-modal-${obj.dt}" class="modal-wx">
-    //                     <div class="modal-content">
-    //                      <div class="card-header text-center">
-    //                          <div aria-label="Weather Date">
-    //                              ${transDate(obj.dt)}
-    //                          </div>
-    //                     </div>
-    //                     <div class="card-body">
-    //                         <div class="text-center" aria-label="temperature" style="font-size: 2em">
-    //                             ${Math.round(obj.temp.day)}                           <!--TEMP-->
-    //                             °F /
-    //                             ${Math.round(obj.temp.night)}
-    //                             °F
-    //                         </div>
-    //                         <div class="wx-img text-center">
-    //                                                                                    <!--ICON-->
-    //          <img src="http://openweathermap.org/img/w/${obj.weather[0].icon}.png" alt="current weather">
-    //
-    //                          </div>
-    //         <hr>
-    //                          <div class="mx-3 py-2" aria-label="description">
-    //                            Description: <br>
-    //                             <b>
-    //                                 ${obj.weather[0].description}                       <!--DESCRIPTION-->
-    //                            </b>
-    //                         </div>
-    //                         <div class="mx-3" aria-label="humidity">
-    //                            Humidity:
-    //                            <b>
-    //                                 ${obj.humidity}                                      <!--HUMIDITY-->
-    //                            </b>
-    //                         </div>
-    //         <hr>
-    //                         <div class="mx-3 py-2" aria-label="wind">
-    //                            Wind:
-    //                            <b>
-    //                                ${obj.wind_deg}° | ${Math.round(obj.wind_speed)} mph  <!--WIND-->
-    //                            </b>
-    //                         </div>
-    //                         <div class="mx-3" aria-label="pressure">
-    //                            Pressure:
-    //                            <b>
-    //                                ${obj.pressure}                                       <!--WIND-->
-    //                            </b>
-    //                         </div>
-    //                     </div>
-    //                     <button class="close-btn btn-primary">Close</button>
-    //                     </div>
-    //                 </div>
-    //     `
-    // }
     function buildModalScript(obj){
         return `
             <div id="wx-modal-${obj.dt}" class="modal-wx" style="color: #58585e">
@@ -393,6 +339,15 @@
     // Translates Unix Time Stamp to Normal date
     function transDate(unixTimeStamp){
         let date = new Date(unixTimeStamp * 1000).toDateString();
+        date = date.split(' ');
+        date = `<div class="h3"> 
+                    ${date[0]}
+                </div> 
+                <div>
+                    ${date[1]} ${date[2]}, ${date[3]}
+                </div>
+                `
+        console.log(date)
         return date
     }
     // Get time from unixTimeStamp
