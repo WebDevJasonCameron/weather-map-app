@@ -12,19 +12,9 @@ I recognize that I need to work on my branch skills.  As such, I am creating a b
    <-- Branch: "modal-i"
    <--DONE
 
-2. Mobile Version including expanding cards          
+2. Mobile Version cards set to column         
    <-- Branch: "mobile-wx-card" 
-   <--
-
-A. Promises <br>                                                  
-      "...a" <br>  
-      <--
-B. Function refactoring  <br>                                       
-      "...b"<br>  
-      <--
-C. Obj deconstruction <br>                                          
-      "...c" <br>
-      <--
+   <--DONE
 
 3. Better Icons <br>
    <-- Branch: "icon-update"
@@ -36,7 +26,7 @@ C. Obj deconstruction <br>
 
 5. Modal... Add dark mode
    <-- Branch: 'dark'
-   <--
+   <--DONE
 
 ### 1010 | Branch modal-i
 Branch modal-i added...
