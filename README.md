@@ -8,8 +8,8 @@ I refactored this project after working on it during a team sprint.  Much of the
 - [] Add Clock/Time
 
 ### Current Status
-Bellow is a demonstarte of the application in action...
-![](img/wx app 2022 04 17.gif)
+Bellow is a demonstration of the application in action...
+![](img/wx_app_2022_04_17.gif)
 
 
 
